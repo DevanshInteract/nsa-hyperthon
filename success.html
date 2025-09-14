@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Registration Successful - Hyperthon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #000;
+            color: #fff;
+        }
+        .success-animation {
+            animation: successPulse 2s infinite;
+        }
+        @keyframes successPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: block;
+            stroke-width: 2;
+            stroke: #00ff00;
+            stroke-miterlimit: 10;
+            margin: 0 auto;
+            box-shadow: inset 0px 0px 0px #00ff00;
+            animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+        }
+        .checkmark circle {
+            stroke-dasharray: 166;
+            stroke-dashoffset: 166;
+            stroke-width: 2;
+            stroke-miterlimit: 10;
+            stroke: #00ff00;
+            fill: none;
+            animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+        }
+        .checkmark path {
+            transform-origin: 50% 50%;
+            stroke-dasharray: 48;
+            stroke-dashoffset: 48;
+            animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+        }
+        @keyframes stroke {
+            100% { stroke-dashoffset: 0; }
+        }
+        @keyframes scale {
+            0%, 100% { transform: none; }
+            50% { transform: scale3d(1.1, 1.1, 1); }
+        }
+        @keyframes fill {
+            100% { box-shadow: inset 0px 0px 0px 30px #00ff00; }
+        }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col items-center justify-center p-4">
+        <div class="max-w-2xl mx-auto text-center">
+            <!-- Success Animation -->
+            <div class="success-animation mb-8">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark path" fill="none" d="m14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+
+            <!-- Success Message -->
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 text-green-400">
+                Registration Successful!
+            </h1>
+            
+            <p class="text-xl text-gray-300 mb-8">
+                Welcome to Hyperthon! Your registration has been confirmed and payment is complete.
+            </p>
+
+            <!-- Registration Details -->
+            <div class="bg-gray-800 rounded-2xl p-8 mb-8">
+                <h2 class="text-2xl font-semibold mb-6 text-white">Registration Details</h2>
+                <div id="registrationDetails" class="space-y-4 text-left">
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Registration ID:</span>
+                        <span class="text-white font-mono" id="registrationId">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Name:</span>
+                        <span class="text-white" id="participantName">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Email:</span>
+                        <span class="text-white" id="participantEmail">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Institution:</span>
+                        <span class="text-white" id="participantInstitution">Loading...</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-400">Payment Status:</span>
+                        <span class="text-green-400 font-semibold" id="paymentStatus">Completed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="bg-gray-900 rounded-2xl p-8 mb-8">
+                <h3 class="text-xl font-semibold mb-4 text-white">What's Next?</h3>
+                <ul class="text-gray-300 space-y-2 text-left">
+                    <li>• You will receive a confirmation email shortly</li>
+                    <li>• Event details and schedule will be shared via email</li>
+                    <li>• Join our Discord server for updates and networking</li>
+                    <li>• Prepare your development environment</li>
+                </ul>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="index.html" class="bg-white text-black px-8 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors">
+                    Back to Home
+                </a>
+                <button onclick="downloadReceipt()" class="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
+                    Download Receipt
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get registration ID and payment status from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const registrationId = urlParams.get('registration_id');
+        const paymentCompleted = urlParams.get('payment_completed');
+
+        // Fetch registration details
+        async function fetchRegistrationDetails() {
+            if (!registrationId) {
+                document.getElementById('registrationId').textContent = 'Not found';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/api/registration/${registrationId}`);
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('registrationId').textContent = result.registration.id;
+                    document.getElementById('participantName').textContent = result.registration.name;
+                    document.getElementById('participantEmail').textContent = result.registration.email;
+                    document.getElementById('participantInstitution').textContent = result.registration.institution;
+                } else {
+                    // Fallback to showing just the registration ID
+                    document.getElementById('registrationId').textContent = registrationId;
+                    document.getElementById('participantName').textContent = 'Registration Successful';
+                    document.getElementById('participantEmail').textContent = 'Details will be sent via email';
+                    document.getElementById('participantInstitution').textContent = 'Thank you for registering!';
+                }
+            } catch (error) {
+                console.error('Error fetching registration details:', error);
+                // Fallback to showing just the registration ID
+                document.getElementById('registrationId').textContent = registrationId;
+                document.getElementById('participantName').textContent = 'Registration Successful';
+                document.getElementById('participantEmail').textContent = 'Details will be sent via email';
+                document.getElementById('participantInstitution').textContent = 'Thank you for registering!';
+            }
+        }
+
+        // Download receipt function
+        function downloadReceipt() {
+            // This would typically generate a PDF receipt
+            alert('Receipt download feature will be implemented soon!');
+        }
+
+        // Update payment status based on URL parameter
+        if (paymentCompleted === 'true') {
+            document.getElementById('paymentStatus').textContent = 'Payment Completed';
+            document.getElementById('paymentStatus').className = 'text-green-400 font-semibold';
+        } else {
+            document.getElementById('paymentStatus').textContent = 'Registration Only';
+            document.getElementById('paymentStatus').className = 'text-yellow-400 font-semibold';
+        }
+
+        // Load registration details on page load
+        fetchRegistrationDetails();
+    </script>
+</body>
+</html>
