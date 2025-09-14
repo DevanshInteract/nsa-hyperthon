@@ -15,9 +15,12 @@ let useMemoryStorage = false;
 const app = express();
 
 // Middleware
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({
+  origin: ['http://localhost:3001', 'https://hyperthon.interstella.in', 'https://www.hyperthon.interstella.in'],
+  credentials: true
+}));
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 // Serve static files
 app.use(express.static('.'));
@@ -39,20 +42,55 @@ mongoose.connect(config.MONGODB_URI)
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ status: 'OK', message: 'Hyperthon Backend is running' });
+  res.json({ 
+    status: 'OK', 
+    message: 'Hyperthon Backend is running',
+    timestamp: new Date().toISOString(),
+    environment: config.NODE_ENV || 'development',
+    database: useMemoryStorage ? 'Memory Storage' : 'MongoDB',
+    version: '1.0.0'
+  });
+});
+
+// API status endpoint
+app.get('/api/status', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API is operational',
+    endpoints: {
+      register: 'POST /api/register',
+      paymentSuccess: 'GET /api/payment-success',
+      registration: 'GET /api/registration/:id',
+      registrations: 'GET /api/registrations'
+    }
+  });
 });
 
 // Register participant and create payment link
 app.post('/api/register', async (req, res) => {
   try {
     console.log('Registration request received:', req.body);
+    console.log('Request headers:', req.headers);
+    console.log('Request origin:', req.get('origin'));
+    
     const { name, institution, year, email, phone } = req.body;
 
     // Validate required fields
     if (!name || !institution || !year || !email || !phone) {
+      console.log('Validation failed - missing required fields');
       return res.status(400).json({
         success: false,
         message: 'All fields are required'
+      });
+    }
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.log('Validation failed - invalid email format');
+      return res.status(400).json({
+        success: false,
+        message: 'Please enter a valid email address'
       });
     }
 
@@ -257,8 +295,10 @@ app.use('*', (req, res) => {
 });
 
 // Start server
-const PORT = config.PORT;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-  console.log(`Health check: http://localhost:${PORT}/health`);
+const PORT = config.PORT || process.env.PORT || 3001;
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🌐 Health check: http://localhost:${PORT}/health`);
+  console.log(`📊 Environment: ${config.NODE_ENV || 'development'}`);
+  console.log(`💾 Database: ${useMemoryStorage ? 'Memory Storage' : 'MongoDB'}`);
 });

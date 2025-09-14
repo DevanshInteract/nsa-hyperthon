@@ -313,8 +313,16 @@
                         
                         console.log('Submitting form data:', formData);
                         
+                        // Try to determine the correct API URL based on environment
+                        const isProduction = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+                        const apiUrl = isProduction ? 
+                            'https://hyperthon-backend.onrender.com/api/register' : 
+                            '/api/register';
+                        
+                        console.log('Using API URL:', apiUrl);
+                        
                         // Register participant and get payment link
-                        const response = await fetch('/api/register', {
+                        const response = await fetch(apiUrl, {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -326,7 +334,9 @@
                         console.log('Response headers:', response.headers);
                         
                         if (!response.ok) {
-                            throw new Error(`HTTP error! status: ${response.status}`);
+                            const errorText = await response.text();
+                            console.error('Error response:', errorText);
+                            throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
                         }
                         
                         const result = await response.json();
@@ -350,9 +360,18 @@
                         
                     } catch (error) {
                         console.error('Registration error:', error);
-                        alert('Registration failed. Please try again.');
-                        submitBtn.textContent = originalText;
-                        submitBtn.disabled = false;
+                        
+                        // Check if it's a network error (backend not available)
+                        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                            // Fallback: redirect directly to payment link
+                            console.log('Backend not available, using fallback payment link');
+                            alert('Registration form submitted! Redirecting to payment page...');
+                            window.location.href = 'https://rzp.io/rzp/JWc9fAnC';
+                        } else {
+                            alert('Registration failed: ' + error.message);
+                            submitBtn.textContent = originalText;
+                            submitBtn.disabled = false;
+                        }
                     }
                 });
             } else {
