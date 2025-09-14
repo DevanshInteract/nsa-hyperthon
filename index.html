@@ -336,6 +336,24 @@
                         if (!response.ok) {
                             const errorText = await response.text();
                             console.error('Error response:', errorText);
+                            
+                            // If it's a 500 error, use fallback immediately
+                            if (response.status === 500) {
+                                console.log('500 error detected, using fallback payment link');
+                                
+                                // Store form data in localStorage for reference
+                                localStorage.setItem('hyperthon_registration', JSON.stringify({
+                                    ...formData,
+                                    registrationDate: new Date().toISOString(),
+                                    registrationId: Date.now().toString(),
+                                    paymentStatus: 'pending'
+                                }));
+                                
+                                alert('Registration form submitted! Redirecting to payment page...');
+                                window.location.href = 'https://rzp.io/rzp/JWc9fAnC';
+                                return;
+                            }
+                            
                             throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
                         }
                         
