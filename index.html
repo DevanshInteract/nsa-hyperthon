@@ -362,9 +362,18 @@
                         console.error('Registration error:', error);
                         
                         // Check if it's a network error (backend not available)
-                        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError') || error.message.includes('500') || error.message.includes('Internal Server Error')) {
                             // Fallback: redirect directly to payment link
                             console.log('Backend not available, using fallback payment link');
+                            
+                            // Store form data in localStorage for reference
+                            localStorage.setItem('hyperthon_registration', JSON.stringify({
+                                ...formData,
+                                registrationDate: new Date().toISOString(),
+                                registrationId: Date.now().toString(),
+                                paymentStatus: 'pending'
+                            }));
+                            
                             alert('Registration form submitted! Redirecting to payment page...');
                             window.location.href = 'https://rzp.io/rzp/JWc9fAnC';
                         } else {
