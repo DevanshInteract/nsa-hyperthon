@@ -115,12 +115,20 @@ app.post('/api/register', async (req, res) => {
     let savedRegistration;
     if (useMemoryStorage) {
       // Store in memory storage if MongoDB is not available
+      console.log('Using memory storage for registration');
       savedRegistration = await MemoryStorage.create({...registrationData, _id: registrationId});
       console.log('Registration stored in memory:', savedRegistration);
     } else {
       // Store in MongoDB
-      savedRegistration = await Registration.create(registrationData);
-      console.log('Registration stored in MongoDB:', savedRegistration);
+      console.log('Using MongoDB for registration');
+      console.log('Registration data to save:', registrationData);
+      try {
+        savedRegistration = await Registration.create(registrationData);
+        console.log('✅ Registration stored in MongoDB:', savedRegistration);
+      } catch (dbError) {
+        console.error('❌ MongoDB save error:', dbError);
+        throw dbError;
+      }
     }
     
     // Use the provided Razorpay payment link
