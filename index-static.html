@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperthon 2025 - Registration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-code, .floating-binary, .floating-symbols, .matrix-rain, .circuit-lines {
+            position: absolute;
+            color: #00ff00;
+            font-size: 10px;
+            opacity: 0.2;
+            animation: float 30s infinite linear;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
+        }
+        
+        .floating-symbols {
+            color: #ffffff;
+            font-size: 12px;
+            opacity: 0.2;
+        }
+        
+        .floating-symbols:hover {
+            opacity: 1;
+            transform: scale(1.5);
+            color: #00ff00;
+            text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+        }
+        
+        .floating-partner, .floating-sponsor {
+            position: relative;
+            animation: floatImage 8s infinite ease-in-out;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .floating-partner:hover, .floating-sponsor:hover {
+            transform: scale(1.1) translateY(-10px);
+            filter: brightness(1.2);
+        }
+        
+        .partner-logo, .sponsor-logo {
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+            transition: all 0.3s ease;
+            width: 250px;
+            height: 120px;
+            object-fit: contain;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        .partner-logo:hover, .sponsor-logo:hover {
+            box-shadow: 0 8px 25px rgba(0, 255, 0, 0.6);
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100vh) rotate(360deg); }
+        }
+        
+        @keyframes floatImage {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .glitch-text {
+            animation: glitch 2s infinite;
+        }
+        
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+    </style>
+</head>
+<body class="bg-black text-white min-h-screen">
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <!-- Floating Code Elements -->
+        <div class="floating-code" style="top: 10%; left: 5%; animation-delay: 0s;">&lt;html&gt;</div>
+        <div class="floating-code" style="top: 20%; left: 15%; animation-delay: 5s;">function() {</div>
+        <div class="floating-code" style="top: 30%; left: 25%; animation-delay: 10s;">const api = fetch()</div>
+        <div class="floating-code" style="top: 40%; left: 35%; animation-delay: 15s;">return data;</div>
+        <div class="floating-code" style="top: 50%; left: 45%; animation-delay: 20s;">}</div>
+        <div class="floating-code" style="top: 60%; left: 55%; animation-delay: 25s;">&lt;/html&gt;</div>
+        
+        <!-- Floating Binary -->
+        <div class="floating-binary" style="top: 15%; left: 10%; animation-delay: 2s;">01001000</div>
+        <div class="floating-binary" style="top: 25%; left: 20%; animation-delay: 7s;">11010101</div>
+        <div class="floating-binary" style="top: 35%; left: 30%; animation-delay: 12s;">00110011</div>
+        <div class="floating-binary" style="top: 45%; left: 40%; animation-delay: 17s;">10101010</div>
+        <div class="floating-binary" style="top: 55%; left: 50%; animation-delay: 22s;">01010101</div>
+        
+        <!-- Floating Symbols -->
+        <div class="floating-symbols" style="top: 12%; left: 8%; animation-delay: 3s;">{ }</div>
+        <div class="floating-symbols" style="top: 22%; left: 18%; animation-delay: 8s;">[ ]</div>
+        <div class="floating-symbols" style="top: 32%; left: 28%; animation-delay: 13s;">&lt; &gt;</div>
+        <div class="floating-symbols" style="top: 42%; left: 38%; animation-delay: 18s;">( )</div>
+        <div class="floating-symbols" style="top: 52%; left: 48%; animation-delay: 23s;">$ #</div>
+        <div class="floating-symbols" style="top: 62%; left: 58%; animation-delay: 28s;">% &</div>
+        
+        <!-- Matrix Rain Effect -->
+        <div class="matrix-rain" style="top: 5%; left: 70%; animation-delay: 1s;">01101001</div>
+        <div class="matrix-rain" style="top: 15%; left: 80%; animation-delay: 6s;">11010010</div>
+        <div class="matrix-rain" style="top: 25%; left: 90%; animation-delay: 11s;">00110101</div>
+        <div class="matrix-rain" style="top: 35%; left: 75%; animation-delay: 16s;">10101001</div>
+        <div class="matrix-rain" style="top: 45%; left: 85%; animation-delay: 21s;">01011010</div>
+        <div class="matrix-rain" style="top: 55%; left: 95%; animation-delay: 26s;">11001100</div>
+        
+        <!-- Circuit Lines -->
+        <div class="circuit-lines" style="top: 8%; left: 12%; animation-delay: 4s;">┌─┐</div>
+        <div class="circuit-lines" style="top: 18%; left: 22%; animation-delay: 9s;">├─┤</div>
+        <div class="circuit-lines" style="top: 28%; left: 32%; animation-delay: 14s;">└─┘</div>
+        <div class="circuit-lines" style="top: 38%; left: 42%; animation-delay: 19s;">┌─┐</div>
+        <div class="circuit-lines" style="top: 48%; left: 52%; animation-delay: 24s;">├─┤</div>
+        <div class="circuit-lines" style="top: 58%; left: 62%; animation-delay: 29s;">└─┘</div>
+    </div>
+
+    <!-- Header -->
+    <header class="relative z-10 py-8 px-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="text-2xl font-bold text-green-400">HYPERTHON</div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#about" class="hover:text-green-400 transition-colors">About</a>
+                <a href="#schedule" class="hover:text-green-400 transition-colors">Schedule</a>
+                <a href="#venue" class="hover:text-green-400 transition-colors">Venue</a>
+                <a href="#register" class="hover:text-green-400 transition-colors">Register</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative z-10 text-center py-20 px-4">
+        <h1 class="text-6xl md:text-8xl font-black mb-8 glitch-text">
+            <span class="text-white">HYPERTHON</span>
+        </h1>
+        <p class="text-2xl md:text-3xl text-gray-300 mb-12">6-Hour Intense Coding Marathon</p>
+        <p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">
+            Join the ultimate coding challenge where innovation meets competition. 
+            Build, create, and compete in the most intense 6-hour coding marathon.
+        </p>
+        <a href="#register" class="inline-block bg-green-500 hover:bg-green-600 text-black font-bold py-4 px-8 rounded-lg text-xl transition-all transform hover:scale-105">
+            Register Now
+        </a>
+    </section>
+
+    <!-- Partners & Sponsors Section -->
+    <section class="relative z-10 py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4">Partners & Sponsors</h3>
+                <p class="text-gray-400 text-lg">Thank you to our amazing partners and sponsors who make Hyperthon possible</p>
+            </div>
+            
+            <!-- Partners Section -->
+            <div class="mb-16">
+                <h4 class="text-2xl font-semibold text-center mb-8 text-gray-300">Partners</h4>
+                <div class="flex flex-wrap justify-center items-center gap-12">
+                    <!-- Floating Partner Images -->
+                    <div class="floating-partner">
+                        <img src="gigzslogo.jpg" alt="Partner 1" class="partner-logo">
+                    </div>
+                    <div class="floating-partner">
+                        <img src="azurelogo.png" alt="Partner 2" class="partner-logo">
+                    </div>
+                    <div class="floating-partner">
+                        <img src="ICTRD logo.png" alt="Partner 3" class="partner-logo">
+                    </div>
+                    <div class="floating-partner">
+                        <img src="NASA space app white.png" alt="Partner 4" class="partner-logo">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sponsors Section -->
+            <div>
+                <h4 class="text-2xl font-semibold text-center mb-8 text-gray-300">Sponsors</h4>
+                <div class="flex flex-wrap justify-center items-center gap-12">
+                    <!-- Floating Sponsor Images -->
+                    <div class="floating-sponsor silver">
+                        <img src="gigzslogo.jpg" alt="Silver Sponsor" class="sponsor-logo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Timeline Section -->
+    <div class="mb-16">
+        <h4 class="text-2xl font-semibold text-center mb-8 text-gray-300">Event Schedule</h4>
+        <div class="max-w-4xl mx-auto">
+            <div class="relative">
+                <!-- Timeline line -->
+                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-green-500"></div>
+                
+                <!-- Timeline items -->
+                <div class="space-y-12">
+                    <!-- 9:00 AM -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-gray-800 p-6 rounded-lg">
+                                <h5 class="text-xl font-semibold text-green-400">9:00 AM</h5>
+                                <p class="text-gray-300">Registration & Welcome</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex-shrink-0 z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- 10:00 AM -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex-shrink-0 z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-gray-800 p-6 rounded-lg">
+                                <h5 class="text-xl font-semibold text-green-400">10:00 AM</h5>
+                                <p class="text-gray-300">Coding Marathon Begins</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 1:00 PM -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-gray-800 p-6 rounded-lg">
+                                <h5 class="text-xl font-semibold text-green-400">1:00 PM</h5>
+                                <p class="text-gray-300">Lunch Break</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex-shrink-0 z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                    
+                    <!-- 2:00 PM -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8"></div>
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex-shrink-0 z-10"></div>
+                        <div class="w-1/2 pl-8">
+                            <div class="bg-gray-800 p-6 rounded-lg">
+                                <h5 class="text-xl font-semibold text-green-400">2:00 PM</h5>
+                                <p class="text-gray-300">Coding Continues</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 4:00 PM -->
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-8 text-right">
+                            <div class="bg-gray-800 p-6 rounded-lg">
+                                <h5 class="text-xl font-semibold text-green-400">4:00 PM</h5>
+                                <p class="text-gray-300">Final Presentations & Awards</p>
+                            </div>
+                        </div>
+                        <div class="w-8 h-8 bg-green-500 rounded-full flex-shrink-0 z-10"></div>
+                        <div class="w-1/2 pl-8"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Registration Form Section -->
+    <section class="w-full max-w-2xl mx-auto py-16" id="register">
+        <div class="bg-[#111] p-8 sm:p-12 rounded-2xl shadow-2xl">
+            <h2 class="text-3xl font-bold text-center mb-8 text-white">Register for Hyperthon 2025</h2>
+            <p class="text-gray-400 text-center mb-8">Fill out the form below to secure your spot in the ultimate coding marathon</p>
+            
+            <form id="registrationForm" class="space-y-6">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-300 mb-2">Name of Participant *</label>
+                    <input type="text" id="name" name="name" required 
+                           class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-white placeholder-gray-400"
+                           placeholder="Enter your full name">
+                </div>
+                
+                <div>
+                    <label for="institution" class="block text-sm font-medium text-gray-300 mb-2">School/College/Institute Name *</label>
+                    <input type="text" id="institution" name="institution" required 
+                           class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-white placeholder-gray-400"
+                           placeholder="Enter your institution name">
+                </div>
+                
+                <div>
+                    <label for="year" class="block text-sm font-medium text-gray-300 mb-2">Academic Year *</label>
+                    <select id="year" name="year" required 
+                            class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-white">
+                        <option value="">Select your academic year</option>
+                        <option value="1st Year">1st Year</option>
+                        <option value="2nd Year">2nd Year</option>
+                        <option value="3rd Year">3rd Year</option>
+                        <option value="4th Year">4th Year</option>
+                        <option value="Graduate">Graduate</option>
+                        <option value="Post Graduate">Post Graduate</option>
+                        <option value="Working Professional">Working Professional</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-300 mb-2">Email Address *</label>
+                    <input type="email" id="email" name="email" required 
+                           class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-white placeholder-gray-400"
+                           placeholder="Enter your email address">
+                </div>
+                
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-300 mb-2">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required 
+                           class="w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent text-white placeholder-gray-400"
+                           placeholder="Enter your phone number">
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-green-500 hover:bg-green-600 text-black font-bold py-4 px-6 rounded-lg text-lg transition-all transform hover:scale-105">
+                    Register & Pay Now
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Event Venue Section -->
+    <section class="py-20 px-4" id="venue">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <h3 class="text-3xl md:text-4xl font-bold mb-4">Event Venue</h3>
+                <p class="text-gray-400 text-lg">Join us at our state-of-the-art venue for an unforgettable coding experience</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <!-- Venue Details -->
+                <div class="space-y-8">
+                    <div class="bg-gray-800 rounded-2xl p-8">
+                        <h4 class="text-2xl font-semibold mb-6 text-white">Venue Information</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-4">
+                                <div class="w-6 h-6 bg-green-500 rounded-full flex-shrink-0 mt-1"></div>
+                                <div>
+                                    <h5 class="text-lg font-semibold text-white">Location</h5>
+                                    <p class="text-gray-400">Tech Innovation Center<br>123 Innovation Drive<br>Silicon Valley, CA 94000</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-6 h-6 bg-blue-500 rounded-full flex-shrink-0 mt-1"></div>
+                                <div>
+                                    <h5 class="text-lg font-semibold text-white">Date & Time</h5>
+                                    <p class="text-gray-400">Saturday, March 15, 2025<br>9:00 AM - 4:00 PM</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-4">
+                                <div class="w-6 h-6 bg-purple-500 rounded-full flex-shrink-0 mt-1"></div>
+                                <div>
+                                    <h5 class="text-lg font-semibold text-white">Capacity</h5>
+                                    <p class="text-gray-400">500+ participants<br>Multiple breakout rooms</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Amenities -->
+                    <div class="bg-gray-800 rounded-2xl p-8">
+                        <h4 class="text-2xl font-semibold mb-6 text-white">Venue Amenities</h4>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="flex items-center space-x-3">
+                                <span class="text-green-400">✓</span>
+                                <span class="text-gray-300">High-speed WiFi</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-green-400">✓</span>
+                                <span class="text-gray-300">Power outlets</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-green-400">✓</span>
+                                <span class="text-gray-300">Catering</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-green-400">✓</span>
+                                <span class="text-gray-300">Parking</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-green-400">✓</span>
+                                <span class="text-gray-300">Air conditioning</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <span class="text-green-400">✓</span>
+                                <span class="text-gray-300">Security</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Venue Image Placeholder -->
+                <div class="bg-gray-800 rounded-2xl p-8 text-center">
+                    <div class="w-full h-96 bg-gray-700 rounded-lg flex items-center justify-center">
+                        <div class="text-gray-400">
+                            <div class="text-6xl mb-4">🏢</div>
+                            <p class="text-lg">Venue Image</p>
+                            <p class="text-sm">Coming Soon</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="text-2xl font-bold text-green-400 mb-4">HYPERTHON 2025</div>
+            <p class="text-gray-400 mb-8">The Ultimate Coding Marathon Experience</p>
+            <div class="flex justify-center space-x-8">
+                <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">Terms of Service</a>
+                <a href="#" class="text-gray-400 hover:text-green-400 transition-colors">Contact Us</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple form submission that redirects directly to Razorpay
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registrationForm');
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const submitBtn = document.querySelector('button[type="submit"]');
+                    const originalText = submitBtn.textContent;
+                    
+                    // Get form data
+                    const formData = {
+                        name: document.getElementById('name').value,
+                        institution: document.getElementById('institution').value,
+                        year: document.getElementById('year').value,
+                        email: document.getElementById('email').value,
+                        phone: document.getElementById('phone').value
+                    };
+                    
+                    // Validate required fields
+                    if (!formData.name || !formData.institution || !formData.year || !formData.email || !formData.phone) {
+                        alert('Please fill in all required fields.');
+                        return;
+                    }
+                    
+                    // Show loading state
+                    submitBtn.textContent = 'Processing...';
+                    submitBtn.disabled = true;
+                    
+                    // Store form data in localStorage for later use
+                    localStorage.setItem('hyperthon_registration', JSON.stringify({
+                        ...formData,
+                        registrationDate: new Date().toISOString(),
+                        registrationId: Date.now().toString()
+                    }));
+                    
+                    // Simulate processing delay
+                    setTimeout(() => {
+                        alert('Registration form submitted! Redirecting to payment page...');
+                        // Redirect to Razorpay payment link
+                        window.location.href = 'https://rzp.io/rzp/JWc9fAnC';
+                    }, 1000);
+                });
+            }
+        });
+        
+        // Interactive floating symbols
+        document.querySelectorAll('.floating-symbols').forEach(symbol => {
+            symbol.addEventListener('mouseenter', function() {
+                this.style.opacity = '1';
+                this.style.transform = 'scale(1.5)';
+                this.style.color = '#00ff00';
+            });
+            
+            symbol.addEventListener('mouseleave', function() {
+                this.style.opacity = '0.2';
+                this.style.transform = 'scale(1)';
+                this.style.color = '#ffffff';
+            });
+            
+            symbol.addEventListener('click', function() {
+                this.style.animation = 'none';
+                this.style.transform = 'scale(2) rotate(360deg)';
+                setTimeout(() => {
+                    this.style.animation = 'float 30s infinite linear';
+                    this.style.transform = 'scale(1)';
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+</html>
