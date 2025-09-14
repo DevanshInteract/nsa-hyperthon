@@ -26,15 +26,19 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 app.use(express.static('.'));
 
 // Connect to MongoDB
+console.log('Attempting to connect to MongoDB...');
+console.log('MongoDB URI:', config.MONGODB_URI ? 'Set' : 'Not set');
+console.log('Environment:', config.NODE_ENV);
+
 mongoose.connect(config.MONGODB_URI)
 .then(() => {
-  console.log('Connected to MongoDB');
+  console.log('✅ Connected to MongoDB successfully');
   useMemoryStorage = false;
 })
 .catch(err => {
-  console.error('MongoDB connection error:', err);
+  console.error('❌ MongoDB connection error:', err.message);
   console.log('⚠️  Running without database - using memory storage');
-  console.log('💡 To enable database: Install MongoDB or use MongoDB Atlas');
+  console.log('💡 To enable database: Check MongoDB URI in environment variables');
   useMemoryStorage = true;
 });
 
@@ -130,9 +134,12 @@ app.post('/api/register', async (req, res) => {
 
   } catch (error) {
     console.error('Registration error:', error);
+    console.error('Error details:', error.message);
+    console.error('Stack trace:', error.stack);
     res.status(500).json({
       success: false,
-      message: 'Registration failed. Please try again.'
+      message: 'Registration failed. Please try again.',
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 });
